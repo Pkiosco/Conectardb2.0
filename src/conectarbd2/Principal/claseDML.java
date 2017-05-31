@@ -15,9 +15,6 @@ import java.util.Scanner;
  * @author Casa
  */
 
-
-
-
 public  class claseDML {
 
 static String insert;

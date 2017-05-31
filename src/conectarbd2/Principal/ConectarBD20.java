@@ -18,6 +18,8 @@ public class ConectarBD20 {
 
         claseDML manejoSQL = new claseDML();
         manejoSQL.Conectar();
+        
+        manejoSQL.Select();
     }
     
 }

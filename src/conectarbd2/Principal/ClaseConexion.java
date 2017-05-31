@@ -12,7 +12,17 @@ import java.io.FileReader;
 import java.sql.Connection;
 import java.sql.DriverManager;
 public abstract class ClaseConexion {
-    
+    /*
+    se usa un archivo txt en ruta c\datos con la estructura
+    ----Servidor
+    Aca el nombre del servidor
+    ----Base
+    aca el nombre de la base
+    ----usuario
+    aca el nombre de usuario
+    ----Pswd
+    aca el password
+      */
     
 
 
@@ -20,16 +30,12 @@ public abstract class ClaseConexion {
         int numLineas=9;
         int contador=0;    
         
-        
-
-        
+        //componentes para leer txt
         String dato []=new String [numLineas];
         File archivo = new File ("C:\\datos.txt");
         BufferedReader reader = new BufferedReader(new FileReader(archivo));
         String linea = reader.readLine();
-
-        
-
+        //TRAIGO LOS CAMPOS DEL TXT
         while (linea != null && contador<numLineas){
         linea = reader.readLine();
                if(contador % 2 == 0){
