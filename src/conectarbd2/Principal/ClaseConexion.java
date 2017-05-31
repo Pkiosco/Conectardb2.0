@@ -33,7 +33,7 @@ public abstract class ClaseConexion {
         while (linea != null && contador<numLineas){
         linea = reader.readLine();
                if(contador % 2 == 0){
-               dato[contador]=linea;
+               dato[contador]=linea.toString();
                 }
         contador++;
         }
