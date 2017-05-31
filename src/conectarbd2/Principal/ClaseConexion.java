@@ -18,38 +18,33 @@ public abstract class ClaseConexion {
 
     public static Connection GetConexion() throws Exception {
         int numLineas=9;
-        int contador=1;    
+        int contador=0;    
         
         
 
         
         String dato []=new String [numLineas];
-        File archivo = new File ("C:\\archivo.txt");
+        File archivo = new File ("C:\\datos.txt");
         BufferedReader reader = new BufferedReader(new FileReader(archivo));
         String linea = reader.readLine();
 
         
 
         while (linea != null && contador<numLineas){
-                if(contador % 2 == 0){
-
-                linea = reader.readLine();
-                dato[contador]=linea;
+        linea = reader.readLine();
+               if(contador % 2 == 0){
+               dato[contador]=linea;
                 }
-                
         contador++;
         }
-
-        
-        
-        String dbConnString = "jdbc:mysql://"+dato[2]+"/"+dato[4]+""; //3306 puesto default 
+            String dbConnString = "jdbc:mysql://"+dato[0]+"/"+dato[2]+""; //3306 puesto default 
         // Tipo de Bda Conectar - Puerto del puerto - Nombre BD
         
         // Establece el usuario de la base de datos
-        String dbUser = dato[6];
+        String dbUser = dato[4];
         
         // Establece la contraseña de la base de datos
-        String dbPassword = dato[8];
+        String dbPassword = dato[6];
         
         // Establece el driver de conexion
         //Class.forName(dbDriver).newInstance();
