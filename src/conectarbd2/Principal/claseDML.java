@@ -21,19 +21,30 @@ static String insert;
 static String update;
 static String delete;
 int id;
- static Connection laConexion;
+static Connection laConexion;
+static boolean conectado;
 Scanner tecladoIN = new Scanner(System.in); 
 
     public void Conectar() throws Exception    {
-
-      laConexion =  ClaseConexion.GetConexion();
+        if (conectado == false){
+            laConexion =  ClaseConexion.GetConexion();
+            System.out.println("La conexion se realizo con exito"); 
+            conectado = true;
+        }
     }
     public void Desconectar() throws Exception {
-        laConexion.close();
+        if (conectado == true){
+            laConexion.close();
+            System.out.println("ya se desconecto de el servidor"); 
+            conectado = false;
+        }        
     }
-    public void Select() throws Exception    {
 
-        Connection laConexion = ClaseConexion.GetConexion();
+    public static boolean isConectado() {
+        return conectado;
+    }
+    
+    public void Select() throws Exception    {
         // Arma la consulta y la ejecuta
         String laConsulta = "SELECT * FROM alumnos";
         Statement stmtConsulta = laConexion.createStatement();
@@ -53,7 +64,6 @@ Scanner tecladoIN = new Scanner(System.in);
         claseDML Muestra = new claseDML();
         Muestra.Select();
         System.out.println("Ingrese el valor numerico del Id a Eliminar");
-        id = tecladoIN.nextInt();
         delete = "DELETE FROM alumnos WHERE alu_id = "+ id ;
         // Arma la sentencia de eliminación y la ejecuta
         Statement stmtEliminacion = laConexion.createStatement();
@@ -86,7 +96,7 @@ Scanner tecladoIN = new Scanner(System.in);
         Statement stmtActualizacion = laConexion.createStatement();
         stmtActualizacion.execute(update);
         
-        // Cierra el Statement y la Connection
+        // Cierra el Statement 
         stmtActualizacion.close();
        
         // Informa que la actualización ha sido realizada con éxito
