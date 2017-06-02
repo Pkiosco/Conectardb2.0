@@ -22,6 +22,18 @@ public abstract class ClaseConexion {
     aca el nombre de usuario
     ----Pswd
     aca el password
+    ----Servidor
+localhost
+----Base
+j2se
+----Usuario
+Kiosco
+----pass
+146921
+
+
+
+
       */
     
 
