@@ -31,30 +31,38 @@ public class ConectarBD20 {
             System.out.println("1-Desconectar \n2-Seleccion \n3-Insertar\n4-Actualizar\n5-Borrar");
         }
         opcionBrow = tecladoIN.nextInt();
-        switch(opcionBrow){
-            case 0:
-                manejoSQL.Conectar();
-                break;
-            case 1:
-                manejoSQL.Select();
-                break;
-            case 2:
-                
-                break;
-            case 3:
-                
-                break;
-            case 4:
-                
-               break;
-            case 5:
-                
-                break;
-            default:
-                System.out.println("Opcion ingresada Incorrecta");
-                System.out.println("Debe elegir una opcion entre 0 y 5");    
-                break;
-        } 
+        while (opcionBrow != 99){
+            switch(opcionBrow){
+                case 0:
+                    manejoSQL.Conectar();
+                    break;
+                case 1:
+                    manejoSQL.Select();
+                    break;
+                case 2:
+
+                    break;
+                case 3:
+
+                    break;
+                case 4:
+
+                   break;
+                case 5:
+
+                    break;
+                default:
+                    System.out.println("Opcion ingresada Incorrecta");
+                    System.out.println("Debe elegir una opcion entre 0 y 5");    
+                    break;
+            } 
+            System.out.println("¿Desea continuar cargando? s/n");
+            String continua;
+            continua = tecladoIN.next();
+            if (continua.toUpperCase() == "N"){
+            opcionBrow = 99;
+            }
+        }    
 
         
     }
