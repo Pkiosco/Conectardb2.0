@@ -11,6 +11,7 @@ import java.io.FileReader;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+
 public abstract class ClaseConexion {
     /*
     se usa un archivo txt en ruta c\datos con la estructura

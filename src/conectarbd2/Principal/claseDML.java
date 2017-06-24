@@ -8,6 +8,8 @@ package conectarbd2.Principal;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.sql.PreparedStatement;
+
 import java.util.Scanner;
 
 /**
@@ -49,25 +51,25 @@ Scanner tecladoIN = new Scanner(System.in);
         String laConsulta = "SELECT * FROM alumnos";
         Statement stmtConsulta = laConexion.createStatement();
         ResultSet rs = stmtConsulta.executeQuery(laConsulta);
-        
-        // Muestra los datos
-        while( rs.next() )
+        // Muestra los datos 
+
+        while( rs.next() ){
             System.out.println( "ID: " + rs.getInt("alu_id") + " -- " + "Nombre: " + rs.getString("alu_nombre") + " -- " + "Apellido: " + rs.getString("alu_apellido") );
-        
+        }
         // Cierra el Statement y la Connection
         stmtConsulta.close();
     }
      
     public void Eliminar(int id)throws Exception{
         // Define la conexion
-        
         claseDML Muestra = new claseDML();
         Muestra.Select();
         System.out.println("Ingrese el valor numerico del Id a Eliminar");
-        delete = "DELETE FROM alumnos WHERE alu_id = "+ id ;
+        delete = "DELETE FROM alumnos WHERE alu_id = ? " ;
         // Arma la sentencia de eliminación y la ejecuta
-        Statement stmtEliminacion = laConexion.createStatement();
-        stmtEliminacion.execute(delete);
+        PreparedStatement stmtEliminacion = laConexion.prepareStatement(delete);
+        stmtEliminacion.setInt(1, id);
+        stmtEliminacion.executeQuery();
         
         // Cierra el Statement y la Connection
         stmtEliminacion.close();
@@ -77,8 +79,10 @@ Scanner tecladoIN = new Scanner(System.in);
     }    
     
     public void Insertar(String nombre, String apellido)throws Exception{
-        Statement stmtInsercion = laConexion.createStatement();
-        insert = "INSERT INTO alumnos ( alu_nombre, alu_apellido)  VALUES  ( '" + nombre + "'  , '" +apellido +"')";
+        
+        PreparedStatement stmtInsercion = laConexion.prepareStatement("INSERT INTO alumnos ( alu_nombre, alu_apellido)  VALUES  ( ?,?)");
+        //insert =;
+        
         stmtInsercion.execute(insert);
         
         // Cierra el Statement y la Connection
